@@ -6,43 +6,43 @@ import java.util.List;
 import com.crud.crudofheroes.model.Hero;
 import com.crud.crudofheroes.model.Parceiro;
 import com.crud.crudofheroes.model.Poderes;
-import com.crud.crudofheroes.repository.HeroRepository;
+import com.crud.crudofheroes.repository.CrudRepository;
 
 public class AtualizarHero {
 
-	private String nomeHeroi;
-	private List<Poderes> nomePoderes;
-	private List<Parceiro> nomeParceiro;
+	private String nome;
+	private List<Poderes> poderHeroi;
+	private Parceiro parceiro;
 
-	public String getNomeHeroi() {
-		return nomeHeroi;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeHeroi(String nomeHeroi) {
-		this.nomeHeroi = nomeHeroi;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public List<Poderes> getNomePoderes() {
-		return nomePoderes;
+	public List<Poderes> getPoderHeroi() {
+		return poderHeroi;
 	}
 
-	public void setNomePoderes(List<Poderes> nomePoderes) {
-		this.nomePoderes = nomePoderes;
+	public void setPoderHeroi(List<Poderes> poderHeroi) {
+		this.poderHeroi = poderHeroi;
 	}
 
-	public List<Parceiro> getNomeParceiro() {
-		return nomeParceiro;
+	public Parceiro getParceiro() {
+		return parceiro;
 	}
 
-	public void setNomeParceiro(List<Parceiro> nomeParceiro) {
-		this.nomeParceiro = nomeParceiro;
+	public void setParceiro(Parceiro parceiro) {
+		this.parceiro = parceiro;
 	}
 
-	public Hero atualizarHero(Long id, HeroRepository heroRepository) {
-		Hero hero = heroRepository.getOne(id);
-		hero.setNomeHeroi(nomeHeroi);
-		hero.setNomePoderes(nomePoderes);
-		hero.setNomeParceiro(nomeParceiro);
+	public Hero atualizarHero(Long id, CrudRepository crudRepository) {
+		Hero hero = crudRepository.getOne(id);
+		hero.setNome(nome);
+		hero.setPoderHeroi(poderHeroi);
+		hero.setParceiro(parceiro);
 		return hero;
 	}
 }

@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "HERO")
@@ -25,31 +22,26 @@ public class Hero {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idHeroi;
 
-	@NotNull
-	@NotEmpty
-	@Length(max = 100)
-	@Column(name = "NOME_HEROI", nullable = false)
-	private String nomeHeroi;
+	private String nome;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "hero_idHeroi")
-	@Column(name = "NOME_PODERES", nullable = false)
-	private List<Poderes> nomePoderes = new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "PODER_HEROI", joinColumns = { 
+	@JoinColumn(name = "HERO_ID_HEROI") }, inverseJoinColumns = {
+	@JoinColumn(name = "PODERES_ID_PODER") })
+	private List<Poderes> poderHeroi = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "hero_idHeroi")
-	@Column(name = "NOME_PARCEIRO", nullable = false)
-	private List<Parceiro> nomeParceiro = new ArrayList<>();
+	@OneToOne(mappedBy = "hero", cascade = CascadeType.ALL)
+	private Parceiro parceiro;
 
 	public Hero() {
 
 	}
 
-	public Hero(Long id, String nomeHeroi, List<Poderes> nomePoderes, List<Parceiro> nomeParceiro) {
-		this.idHeroi = id;
-		this.nomeHeroi = nomeHeroi;
-		this.nomePoderes = nomePoderes;
-		this.nomeParceiro = nomeParceiro;
+	public Hero(Long idHero, String nome, List<Poderes> poderHeroi, Parceiro parceiro) {
+		this.idHeroi = idHero;
+		this.nome = nome;
+		this.poderHeroi = poderHeroi;
+		this.parceiro = parceiro;
 	}
 
 	public Long getIdHeroi() {
@@ -60,28 +52,28 @@ public class Hero {
 		this.idHeroi = idHeroi;
 	}
 
-	public String getNomeHeroi() {
-		return nomeHeroi;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeHeroi(String nomeHeroi) {
-		this.nomeHeroi = nomeHeroi;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public List<Poderes> getNomePoderes() {
-		return nomePoderes;
+	public List<Poderes> getPoderHeroi() {
+		return poderHeroi;
 	}
 
-	public void setNomePoderes(List<Poderes> nomePoderes) {
-		this.nomePoderes = nomePoderes;
+	public void setPoderHeroi(List<Poderes> poderHeroi) {
+		this.poderHeroi = poderHeroi;
 	}
 
-	public List<Parceiro> getNomeParceiro() {
-		return nomeParceiro;
+	public Parceiro getParceiro() {
+		return parceiro;
 	}
 
-	public void setNomeParceiro(List<Parceiro> nomeParceiro) {
-		this.nomeParceiro = nomeParceiro;
+	public void setParceiro(Parceiro parceiro) {
+		this.parceiro = parceiro;
 	}
 
 	@Override
@@ -89,9 +81,9 @@ public class Hero {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((idHeroi == null) ? 0 : idHeroi.hashCode());
-		result = prime * result + ((nomeHeroi == null) ? 0 : nomeHeroi.hashCode());
-		result = prime * result + ((nomeParceiro == null) ? 0 : nomeParceiro.hashCode());
-		result = prime * result + ((nomePoderes == null) ? 0 : nomePoderes.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((parceiro == null) ? 0 : parceiro.hashCode());
+		result = prime * result + ((poderHeroi == null) ? 0 : poderHeroi.hashCode());
 		return result;
 	}
 
@@ -109,20 +101,20 @@ public class Hero {
 				return false;
 		} else if (!idHeroi.equals(other.idHeroi))
 			return false;
-		if (nomeHeroi == null) {
-			if (other.nomeHeroi != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!nomeHeroi.equals(other.nomeHeroi))
+		} else if (!nome.equals(other.nome))
 			return false;
-		if (nomeParceiro == null) {
-			if (other.nomeParceiro != null)
+		if (parceiro == null) {
+			if (other.parceiro != null)
 				return false;
-		} else if (!nomeParceiro.equals(other.nomeParceiro))
+		} else if (!parceiro.equals(other.parceiro))
 			return false;
-		if (nomePoderes == null) {
-			if (other.nomePoderes != null)
+		if (poderHeroi == null) {
+			if (other.poderHeroi != null)
 				return false;
-		} else if (!nomePoderes.equals(other.nomePoderes))
+		} else if (!poderHeroi.equals(other.poderHeroi))
 			return false;
 		return true;
 	}

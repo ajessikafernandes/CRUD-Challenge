@@ -1,6 +1,7 @@
 package com.crud.crudofheroes.controller;
 
 import java.net.URI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,22 +24,22 @@ import com.crud.crudofheroes.controller.dto.DetalhesHeroDto;
 import com.crud.crudofheroes.controller.dto.HeroDto;
 import com.crud.crudofheroes.controller.form.AtualizarHero;
 import com.crud.crudofheroes.model.Hero;
-import com.crud.crudofheroes.repository.HeroRepository;
+import com.crud.crudofheroes.repository.CrudRepository;
 
 @RestController
 @RequestMapping(value = "/heroes")
 public class HeroController {
 
 	@Autowired
-	public HeroRepository heroRepository;
+	public CrudRepository crudRepository;
 
 	@GetMapping
 	public List<HeroDto> lista(String nomeHeroi) {
 		if (nomeHeroi == null) {
-			List<Hero> heroes = heroRepository.findAll();
+			List<Hero> heroes = crudRepository.findAll();
 			return HeroDto.converte(heroes);
 		} else {
-			List<Hero> heroes = heroRepository.findByNomeHeroi(nomeHeroi);
+			List<Hero> heroes = crudRepository.findByNome(nomeHeroi);
 			return HeroDto.converte(heroes);
 		}
 	}
@@ -46,41 +47,41 @@ public class HeroController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<HeroDto> cadastrar(UriComponentsBuilder uriBuilder, @RequestBody Hero hero) {
-		Hero heroes = heroRepository.save(hero);
+		Hero heroes = crudRepository.save(hero);
 		URI uri = uriBuilder.path("/heroes/{idHeroi}").buildAndExpand(hero.getIdHeroi()).toUri();
 		return ResponseEntity.created(uri).body(new HeroDto(heroes));
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<DetalhesHeroDto> detalhar(@PathVariable Long id) {
-		Optional<Hero> optional = heroRepository.findById(id);
+		Optional<Hero> optional = crudRepository.findById(id);
 		if (optional.isPresent()) {
 			return ResponseEntity.ok(new DetalhesHeroDto(optional.get()));
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@PutMapping("/{id}")
 	@Transactional
-	
+
 	public ResponseEntity<HeroDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizarHero form) {
-		Optional<Hero> optional = heroRepository.findById(id);
+		Optional<Hero> optional = crudRepository.findById(id);
 		if (optional.isPresent()) {
-			Hero hero = form.atualizarHero(id, heroRepository);
+			Hero hero = form.atualizarHero(id, crudRepository);
 			return ResponseEntity.ok(new HeroDto(hero));
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> remover(@PathVariable Long id) {
-		Optional<Hero> optional = heroRepository.findById(id);
+		Optional<Hero> optional = crudRepository.findById(id);
 		if (optional.isPresent()) {
-			heroRepository.deleteById(id);
+			crudRepository.deleteById(id);
 			return ResponseEntity.ok().build();
 		}
-		return ResponseEntity.notFound().build();		
+		return ResponseEntity.notFound().build();
 	}
 
 }

@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PARCEIRO")
@@ -16,17 +19,22 @@ public class Parceiro {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idParceiro;
 
-	@NotNull
 	@Column(name = "NOME_PARCEIRO", nullable = false)
 	private String nomeParceiro;
+
+	@JsonIgnore
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Hero hero;
 
 	public Parceiro() {
 
 	}
 
-	public Parceiro(Long idParceiro, String nomeParceiro) {
+	public Parceiro(Long idParceiro, String nomeParceiro, Hero hero) {
 		this.idParceiro = idParceiro;
 		this.nomeParceiro = nomeParceiro;
+		this.hero = hero;
 	}
 
 	public Long getIdParceiro() {

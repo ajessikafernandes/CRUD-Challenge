@@ -10,31 +10,31 @@ import com.crud.crudofheroes.model.Poderes;
 public class HeroDto {
 
 	private Long idHeroi;
-	private String nomeHeroi;
-	private List<Poderes> nomePoderes;
-	private List<Parceiro> nomeParceiro;
+	private String nome;
+	private List<Poderes> poderHeroi;
+	private Parceiro parceiro;
 
 	public HeroDto(Hero hero) {
 		this.idHeroi = hero.getIdHeroi();
-		this.nomeHeroi = hero.getNomeHeroi();
-		this.nomePoderes = hero.getNomePoderes();
-		this.nomeParceiro = hero.getNomeParceiro();
+		this.nome = hero.getNome();
+		this.poderHeroi = hero.getPoderHeroi();
+		this.parceiro = hero.getParceiro();
 	}
 
 	public Long getIdHeroi() {
 		return idHeroi;
 	}
 
-	public String getNomeHeroi() {
-		return nomeHeroi;
+	public String getNome() {
+		return nome;
 	}
 
-	public List<Poderes> getNomePoderes() {
-		return nomePoderes;
+	public List<Poderes> getPoderHeroi() {
+		return poderHeroi;
 	}
 
-	public List<Parceiro> getNomeParceiro() {
-		return nomeParceiro;
+	public Parceiro getParceiro() {
+		return parceiro;
 	}
 
 	public static List<HeroDto> converte(List<Hero> heroes) {

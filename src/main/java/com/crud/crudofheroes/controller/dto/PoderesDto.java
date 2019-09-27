@@ -4,19 +4,19 @@ import com.crud.crudofheroes.model.Poderes;
 
 public class PoderesDto {
 
-	private Long idPoderes;
+	private Long idPoder;
 	private String nomePoderes;
 
 	public PoderesDto(Poderes poderes) {
-		this.idPoderes = poderes.getIdPoderes();
+		this.idPoder = poderes.getIdPoder();
 		this.nomePoderes = poderes.getNomePoderes();
 	}
 
-	public Long getIdPoderes() {
-		return idPoderes;
+	public Long getIdPoder() {
+		return idPoder;
 	}
 
-	public String getNomePoderes() {
+	public String nomePoderes() {
 		return nomePoderes;
 	}
 
