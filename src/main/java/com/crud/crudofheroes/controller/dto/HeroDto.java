@@ -7,6 +7,7 @@ import com.crud.crudofheroes.model.Hero;
 import com.crud.crudofheroes.model.Parceiro;
 import com.crud.crudofheroes.model.Poderes;
 
+//Trasporte de dados entre diferentes componentes do sistema via serialização
 public class HeroDto {
 
 	private Long idHeroi;

@@ -9,5 +9,5 @@ import com.crud.crudofheroes.model.Hero;
 public interface CrudRepository extends JpaRepository<Hero, Long> {
 
 	List<Hero> findByNome(String nome);
-
+	
 }

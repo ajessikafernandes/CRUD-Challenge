@@ -8,6 +8,7 @@ import com.crud.crudofheroes.model.Parceiro;
 import com.crud.crudofheroes.model.Poderes;
 import com.crud.crudofheroes.repository.CrudRepository;
 
+//Atualiza dos dados do Heroi no repositorio
 public class AtualizarHero {
 
 	private String nome;
