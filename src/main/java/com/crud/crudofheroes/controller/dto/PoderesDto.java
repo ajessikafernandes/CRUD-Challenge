@@ -2,6 +2,10 @@ package com.crud.crudofheroes.controller.dto;
 
 import com.crud.crudofheroes.model.Poderes;
 
+/**
+ * @author jessikafernandess 
+ */
+
 public class PoderesDto {
 
 	private Long idPoder;

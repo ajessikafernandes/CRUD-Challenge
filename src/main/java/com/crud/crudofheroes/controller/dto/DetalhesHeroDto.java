@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 import com.crud.crudofheroes.model.Hero;
 import com.crud.crudofheroes.model.Parceiro;
 
+/**
+ * @author jessikafernandess 
+ */
+
 public class DetalhesHeroDto {
 
 	private Long idHeroi;

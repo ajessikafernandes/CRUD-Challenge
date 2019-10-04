@@ -14,6 +14,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * @author jessikafernandess 
+ */
+
 //A classe Hero representa uma entidade e seus objetos devem ser persistidos no banco de dados.
 @Entity
 @Table(name = "HERO")

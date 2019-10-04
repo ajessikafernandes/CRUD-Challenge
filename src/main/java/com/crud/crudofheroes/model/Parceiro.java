@@ -11,6 +11,10 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * @author jessikafernandess 
+ */
+
 //A classe Parceiro representa uma entidade e seus objetos devem ser persistidos no banco de dados.
 @Entity
 @Table(name = "PARCEIRO")

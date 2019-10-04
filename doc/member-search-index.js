@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.crud.crudofheroes.repository","c":"CrudRepository","l":"findByNome(String)","url":"findByNome(java.lang.String)"}]

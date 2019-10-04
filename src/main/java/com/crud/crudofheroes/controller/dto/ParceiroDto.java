@@ -2,6 +2,10 @@ package com.crud.crudofheroes.controller.dto;
 
 import com.crud.crudofheroes.model.Parceiro;
 
+/**
+ * @author jessikafernandess 
+ */
+
 public class ParceiroDto {
 
 	private Long idParceiro;

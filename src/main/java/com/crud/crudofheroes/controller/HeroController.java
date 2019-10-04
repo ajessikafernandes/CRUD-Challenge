@@ -26,6 +26,10 @@ import com.crud.crudofheroes.controller.form.AtualizarHero;
 import com.crud.crudofheroes.model.Hero;
 import com.crud.crudofheroes.repository.CrudRepository;
 
+/**
+ * @author jessikafernandess 
+ */
+
 // @RestController é uma anotação de conveniência que combina @Controller e @ResponseBody 
 @RestController
 @RequestMapping(value = "/heroes")
